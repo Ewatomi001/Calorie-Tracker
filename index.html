@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calorie Tracker</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <!-- Header -->
+    <header class="header">
+      <h1>🔥 Calorie Tracker</h1>
+      <p class="header-date" id="header-date"></p>
+    </header>
+
+    <!-- Date Navigation -->
+    <div class="date-nav">
+      <button class="btn-icon" id="prev-day" aria-label="Previous day">◀</button>
+      <button class="btn-today" id="today-btn">Today</button>
+      <button class="btn-icon" id="next-day" aria-label="Next day">▶</button>
+    </div>
+
+    <!-- Summary Cards -->
+    <div class="summary">
+      <div class="summary-card summary-goal">
+        <span class="summary-label">Goal</span>
+        <span class="summary-value" id="summary-goal">2000</span>
+        <span class="summary-unit">kcal</span>
+        <button class="btn-edit-goal" id="edit-goal-btn" title="Edit goal">✏️</button>
+      </div>
+      <div class="summary-card summary-consumed">
+        <span class="summary-label">Consumed</span>
+        <span class="summary-value" id="summary-consumed">0</span>
+        <span class="summary-unit">kcal</span>
+      </div>
+      <div class="summary-card summary-remaining">
+        <span class="summary-label">Remaining</span>
+        <span class="summary-value" id="summary-remaining">2000</span>
+        <span class="summary-unit">kcal</span>
+      </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+      <div class="progress-bar" id="progress-bar">
+        <span class="progress-text" id="progress-text">0%</span>
+      </div>
+    </div>
+
+    <!-- Add Entry Form -->
+    <div class="add-entry-section">
+      <h2>Add Entry</h2>
+      <form id="entry-form" class="entry-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="food-name">Food</label>
+            <input type="text" id="food-name" placeholder="e.g. Chicken breast" required />
+          </div>
+          <div class="form-group">
+            <label for="food-calories">Calories</label>
+            <input type="number" id="food-calories" placeholder="e.g. 350" min="0" required />
+          </div>
+          <div class="form-group">
+            <label for="food-meal">Meal</label>
+            <select id="food-meal">
+              <option value="breakfast">🌅 Breakfast</option>
+              <option value="lunch">☀️ Lunch</option>
+              <option value="dinner">🌙 Dinner</option>
+              <option value="snack">🍿 Snack</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="btn-add">+ Add Entry</button>
+      </form>
+    </div>
+
+    <!-- Meal Sections -->
+    <div class="meals-section" id="meals-section">
+      <!-- Dynamically populated -->
+    </div>
+
+    <!-- Empty State -->
+    <div class="empty-state" id="empty-state">
+      <span class="empty-icon">🍽️</span>
+      <p>No entries for this day yet.</p>
+      <p class="empty-hint">Add your first meal above!</p>
+    </div>
+
+    <!-- Goal Modal -->
+    <div class="modal-overlay" id="goal-modal" hidden>
+      <div class="modal">
+        <h3>Set Daily Calorie Goal</h3>
+        <form id="goal-form">
+          <div class="form-group">
+            <label for="goal-input">Daily Goal (kcal)</label>
+            <input type="number" id="goal-input" min="100" max="10000" required />
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="btn-cancel" id="goal-cancel">Cancel</button>
+            <button type="submit" class="btn-save">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Edit Entry Modal -->
+    <div class="modal-overlay" id="edit-modal" hidden>
+      <div class="modal">
+        <h3>Edit Entry</h3>
+        <form id="edit-form">
+          <input type="hidden" id="edit-id" />
+          <div class="form-group">
+            <label for="edit-name">Food</label>
+            <input type="text" id="edit-name" required />
+          </div>
+          <div class="form-group">
+            <label for="edit-calories">Calories</label>
+            <input type="number" id="edit-calories" min="0" required />
+          </div>
+          <div class="form-group">
+            <label for="edit-meal">Meal</label>
+            <select id="edit-meal">
+              <option value="breakfast">🌅 Breakfast</option>
+              <option value="lunch">☀️ Lunch</option>
+              <option value="dinner">🌙 Dinner</option>
+              <option value="snack">🍿 Snack</option>
+            </select>
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="btn-cancel" id="edit-cancel">Cancel</button>
+            <button type="submit" class="btn-save">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Weekly Overview -->
+    <div class="weekly-section">
+      <h2>Last 7 Days</h2>
+      <div class="weekly-chart" id="weekly-chart">
+        <!-- Dynamically populated -->
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <button class="btn-danger" id="clear-day-btn">🗑️ Clear This Day</button>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
